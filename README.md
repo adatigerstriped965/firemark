@@ -1,6 +1,10 @@
-# firemark
+<p align="center">
+  <img src="assets/img/firemark.png" alt="firemark" width="200">
+</p>
 
-A fast, single-binary watermarking tool for images and PDFs. Built in Rust.
+<h1 align="center">firemark</h1>
+
+<p align="center">A fast, single-binary watermarking tool for images and PDFs. Built in Rust.</p>
 
 ## Why watermark your documents?
 
