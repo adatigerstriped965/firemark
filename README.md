@@ -141,7 +141,7 @@ firemark doc.png -m "CONFIDENTIAL" --no-anti-ai
 -t, --type            Watermark style (see table above)
 -o, --output          Output file path
 -S, --suffix          Custom output suffix (default: "watermarked")
--c, --color           Color — name or #RRGGBB (default: #808080)
+-c, --color           Color — name or #RRGGBB (default: blue)
 -O, --opacity         Opacity 0.0–1.0 (default: 0.5)
 -r, --rotation        Angle in degrees (default: -45)
 -p, --position        center, top-left, top-right, bottom-left, bottom-right, tile

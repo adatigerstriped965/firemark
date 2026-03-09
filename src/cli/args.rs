@@ -212,7 +212,7 @@ pub struct CliArgs {
     pub offset: Option<String>,
 
     // ── Style & Appearance ──
-    /// Watermark color — named or hex #RRGGBB (default: #808080)
+    /// Watermark color — named or hex #RRGGBB (default: blue)
     #[arg(short, long, help_heading = "Style & Appearance")]
     pub color: Option<String>,
 

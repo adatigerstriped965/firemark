@@ -116,7 +116,7 @@ impl Default for WatermarkConfig {
             tile_cols: None,
             offset: (0, 0),
 
-            color: [0x80, 0x80, 0x80, 0xFF],
+            color: [0x00, 0x00, 0xFF, 0xFF],
             opacity: 0.5,
             background: BackgroundPattern::None,
             bg_color: [0xCC, 0xCC, 0xCC, 0xFF],
