@@ -26,11 +26,21 @@ processing for entire folders.
 
 ## Install
 
+From [crates.io](https://crates.io/crates/firemark):
+
+```bash
+cargo install firemark
 ```
+
+From source:
+
+```bash
+git clone https://github.com/Vitruves/firemark.git
+cd firemark
 cargo install --path .
 ```
 
-Produces a single optimized binary (~5 MB, statically linked).
+Produces a single optimized binary (~5 MB).
 
 ## Quick start
 

@@ -2,7 +2,12 @@
 name = "firemark"
 version = "0.1.0"
 edition = "2021"
-description = "A fast, flexible watermarking tool for images and PDFs"
+description = "Stop sending naked documents. Fast watermarking CLI for images and PDFs."
+license = "MIT"
+repository = "https://github.com/Vitruves/firemark"
+keywords = ["watermark", "pdf", "image", "cli", "security"]
+categories = ["command-line-utilities", "multimedia::images"]
+readme = "README.md"
 
 [profile.release]
 opt-level = 3
