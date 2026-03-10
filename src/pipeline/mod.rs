@@ -31,7 +31,7 @@ pub fn process_single_file(config: &WatermarkConfig, args: &CliArgs) -> anyhow::
     let ext = io::detect_format(input)?;
 
     match ext {
-        io::FileFormat::Jpeg | io::FileFormat::Png => {
+        io::FileFormat::Jpeg | io::FileFormat::Png | io::FileFormat::WebP | io::FileFormat::Tiff => {
             image_pipeline::process_image(config, args)?;
         }
         io::FileFormat::Pdf => {

@@ -71,12 +71,12 @@ pub fn process_image(config: &WatermarkConfig, _args: &CliArgs) -> anyhow::Resul
 
     // 4c. Overlay QR code if --qr-data was provided.
     if let Some(ref qr_data) = config.qr_data {
-        let qr_size = (width.min(height) as f32 * config.scale * 0.5).max(60.0) as u32;
+        let qr_size = config.qr_code_size
+            .unwrap_or_else(|| (width.min(height) as f32 * config.scale * 0.5).max(60.0) as u32);
         let color = to_rgba(with_opacity(config.color, config.opacity));
         let qr = generate_qr(qr_data, qr_size, color)
             .context("QR code generation failed")?;
-        let qx = (width as i32 - qr.width() as i32) / 2;
-        let qy = (height as i32 - qr.height() as i32) / 2;
+        let (qx, qy) = qr_position(width, height, qr.width(), qr.height(), config.qr_code_position, config.margin);
         wm_canvas.blit(&qr, qx, qy);
     }
 
@@ -110,6 +110,22 @@ pub fn process_image(config: &WatermarkConfig, _args: &CliArgs) -> anyhow::Resul
         output_path.display()
     );
     Ok(())
+}
+
+// ── Public helpers ──────────────────────────────────────────────────────────
+
+/// Compute the top-left (x, y) for placing a QR code of size (qw, qh) inside
+/// a canvas of size (cw, ch) at the given position with the specified margin.
+pub fn qr_position(cw: u32, ch: u32, qw: u32, qh: u32, pos: Position, margin: u32) -> (i32, i32) {
+    let (cw, ch, qw, qh, m) = (cw as i32, ch as i32, qw as i32, qh as i32, margin as i32);
+    match pos {
+        Position::Center => ((cw - qw) / 2, (ch - qh) / 2),
+        Position::TopLeft => (m, m),
+        Position::TopRight => (cw - qw - m, m),
+        Position::BottomLeft => (m, ch - qh - m),
+        Position::BottomRight => (cw - qw - m, ch - qh - m),
+        Position::Tile => ((cw - qw) / 2, (ch - qh) / 2), // tile makes no sense for QR; fall back to center
+    }
 }
 
 // ── Internal helpers ────────────────────────────────────────────────────────
@@ -237,6 +253,24 @@ fn save_image(
                 _ => CompressionType::Best,
             };
             let encoder = PngEncoder::new_with_quality(writer, compression, FilterType::Adaptive);
+            encoder.write_image(
+                img,
+                img.width(),
+                img.height(),
+                image::ExtendedColorType::Rgba8,
+            )?;
+        }
+        FileFormat::WebP => {
+            let encoder = image::codecs::webp::WebPEncoder::new_lossless(writer);
+            encoder.write_image(
+                img,
+                img.width(),
+                img.height(),
+                image::ExtendedColorType::Rgba8,
+            )?;
+        }
+        FileFormat::Tiff => {
+            let encoder = image::codecs::tiff::TiffEncoder::new(writer);
             encoder.write_image(
                 img,
                 img.width(),

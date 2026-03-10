@@ -7,6 +7,8 @@ pub enum FileFormat {
     Jpeg,
     Png,
     Pdf,
+    WebP,
+    Tiff,
 }
 
 /// Detect format from file extension.
@@ -20,6 +22,8 @@ pub fn detect_format(path: &Path) -> Result<FileFormat> {
         Some("jpg") | Some("jpeg") => Ok(FileFormat::Jpeg),
         Some("png") => Ok(FileFormat::Png),
         Some("pdf") => Ok(FileFormat::Pdf),
+        Some("webp") => Ok(FileFormat::WebP),
+        Some("tif") | Some("tiff") => Ok(FileFormat::Tiff),
         Some(ext) => Err(FiremarkError::UnsupportedFormat(ext.to_string())),
         None => Err(FiremarkError::UnsupportedFormat("no extension".into())),
     }

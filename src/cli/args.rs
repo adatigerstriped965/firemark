@@ -80,6 +80,12 @@ pub enum FiligraneStyle {
     Spiral,
     /// Fine hexagonal honeycomb mesh
     Mesh,
+    /// Flowing feather-like plume curves scattered across the surface
+    Plume,
+    /// Star nodes connected by a fine geometric web
+    Constellation,
+    /// Overlapping elliptical wave fronts from random origins
+    Ripple,
     /// Disable filigrane overlay
     None,
 }
@@ -152,6 +158,14 @@ pub struct CliArgs {
     /// Data to encode as a QR code watermark
     #[arg(long, help_heading = "Content")]
     pub qr_data: Option<String>,
+
+    /// QR code placement position (default: center)
+    #[arg(long, value_enum, help_heading = "Content")]
+    pub qr_code_position: Option<Position>,
+
+    /// QR code size in pixels (default: auto-scaled from image size)
+    #[arg(long, help_heading = "Content")]
+    pub qr_code_size: Option<u32>,
 
     /// Full text template using {variables}
     #[arg(long, help_heading = "Content")]

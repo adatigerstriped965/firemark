@@ -1,0 +1,60 @@
+# firemark example configuration
+#
+# Usage:
+#   firemark doc.pdf --config examples/config/firemark.toml
+#   firemark doc.pdf --config examples/config/firemark.toml --preset ultra-secure
+#   firemark doc.pdf --config examples/config/firemark.toml --preset light
+
+# ── Global defaults (applied to all runs using this config) ──
+
+main_text = "CONFIDENTIAL"
+secondary_text = "{author} — {date}"
+watermark_type = "diagonal"
+color = "#1a3c6e"
+opacity = 0.45
+font_weight = "bold"
+filigrane = "guilloche"
+border = true
+quality = 92
+
+# ── Presets ──
+
+[preset.ultra-secure]
+# Maximum protection: dense tiling, full filigrane, anti-AI enabled,
+# heavy opacity, shadow, QR traceability, and metadata stripping.
+main_text = "CONFIDENTIAL — {author}"
+secondary_text = "Issued {timestamp} — Do not distribute"
+watermark_type = "tile"
+color = "#CC0000"
+opacity = 0.6
+font_weight = "bold"
+scale = 0.5
+tile_spacing = 40
+filigrane = "full"
+anti_ai = true
+border = true
+border_width = 3
+border_style = "solid"
+shadow = true
+shadow_opacity = 0.5
+shadow_blur = 6
+blend = "multiply"
+qr_data = "firemark://{author}/{timestamp}/{uuid}"
+strip_metadata = true
+dpi = 200
+flatten = true
+
+[preset.light]
+# Minimal, unobtrusive watermark for everyday use.
+# Simple diagonal text, moderate opacity, no extras.
+main_text = "COPY"
+secondary_text = "{date}"
+watermark_type = "diagonal"
+color = "#555555"
+opacity = 0.3
+font_weight = "regular"
+filigrane = "none"
+anti_ai = false
+border = false
+shadow = false
+strip_metadata = false

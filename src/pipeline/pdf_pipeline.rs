@@ -79,11 +79,13 @@ pub fn process_pdf(config: &WatermarkConfig, _args: &CliArgs) -> anyhow::Result<
 
         // Overlay QR code if --qr-data was provided.
         if let Some(ref qr_data) = config.qr_data {
-            let qr_size = (px_w.min(px_h) as f32 * config.scale * 0.5).max(60.0) as u32;
+            let qr_size = config.qr_code_size
+                .unwrap_or_else(|| (px_w.min(px_h) as f32 * config.scale * 0.5).max(60.0) as u32);
             let color = to_rgba(with_opacity(config.color, config.opacity));
             if let Ok(qr) = generate_qr(qr_data, qr_size, color) {
-                let qx = (px_w as i32 - qr.width() as i32) / 2;
-                let qy = (px_h as i32 - qr.height() as i32) / 2;
+                let (qx, qy) = crate::pipeline::image_pipeline::qr_position(
+                    px_w, px_h, qr.width(), qr.height(), config.qr_code_position, config.margin,
+                );
                 canvas.blit(&qr, qx, qy);
             }
         }

@@ -29,6 +29,8 @@ pub struct TomlConfig {
     pub secondary_text: Option<String>,
     pub image_path: Option<PathBuf>,
     pub qr_data: Option<String>,
+    pub qr_code_position: Option<Position>,
+    pub qr_code_size: Option<u32>,
     pub template: Option<String>,
 
     // ── Typography ──
@@ -106,6 +108,8 @@ pub struct PresetConfig {
     pub secondary_text: Option<String>,
     pub image_path: Option<PathBuf>,
     pub qr_data: Option<String>,
+    pub qr_code_position: Option<Position>,
+    pub qr_code_size: Option<u32>,
     pub template: Option<String>,
 
     // ── Typography ──

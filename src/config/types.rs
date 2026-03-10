@@ -25,6 +25,8 @@ pub struct WatermarkConfig {
     pub secondary_text: String,
     pub image_path: Option<PathBuf>,
     pub qr_data: Option<String>,
+    pub qr_code_position: Position,
+    pub qr_code_size: Option<u32>,
     pub template: Option<String>,
 
     // ── Typography ──
@@ -99,6 +101,8 @@ impl Default for WatermarkConfig {
             secondary_text: "{timestamp}".to_string(),
             image_path: None,
             qr_data: None,
+            qr_code_position: Position::Center,
+            qr_code_size: None,
             template: None,
 
             font: None,

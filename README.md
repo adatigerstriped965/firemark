@@ -109,6 +109,9 @@ remove with image editors.
 | `moire` | Concentric circle interference |
 | `spiral` | Archimedean spiral vortex |
 | `mesh` | Hexagonal honeycomb grid |
+| `plume` | Flowing feather-like curves scattered across the surface |
+| `constellation` | Star nodes connected by a fine geometric web |
+| `ripple` | Overlapping elliptical wave fronts from random origins |
 | `full` | All patterns combined |
 | `none` | Disable filigrane |
 
@@ -136,23 +139,27 @@ firemark doc.png -m "CONFIDENTIAL" --no-anti-ai
 ## Common options
 
 ```
--m, --main-text       Primary watermark text
--s, --secondary-text  Secondary text line
--t, --type            Watermark style (see table above)
--o, --output          Output file path
--S, --suffix          Custom output suffix (default: "watermarked")
--c, --color           Color — name or #RRGGBB (default: blue)
--O, --opacity         Opacity 0.0–1.0 (default: 0.5)
--r, --rotation        Angle in degrees (default: -45)
--p, --position        center, top-left, top-right, bottom-left, bottom-right, tile
--f, --font            Font name or path to .ttf/.otf
--I, --image           Overlay an image as watermark
-    --qr-data         Embed a QR code with custom data
-    --border          Draw a border around the watermark
-    --shadow          Add a drop shadow
-    --filigrane       Security filigrane style (default: guilloche)
-    --no-anti-ai      Disable adversarial prompt injection (on by default)
+-m, --main-text           Primary watermark text
+-s, --secondary-text      Secondary text line
+-t, --type                Watermark style (see table above)
+-o, --output              Output file path
+-S, --suffix              Custom output suffix (default: "watermarked")
+-c, --color               Color — name or #RRGGBB (default: blue)
+-O, --opacity             Opacity 0.0–1.0 (default: 0.5)
+-r, --rotation            Angle in degrees (default: -45)
+-p, --position            center, top-left, top-right, bottom-left, bottom-right, tile
+-f, --font                Font name or path to .ttf/.otf
+-I, --image               Overlay an image as watermark
+    --qr-data             Embed a QR code with custom data
+    --qr-code-position    QR code placement (default: center)
+    --qr-code-size        QR code size in pixels (default: auto)
+    --border              Draw a border around the watermark
+    --shadow              Add a drop shadow
+    --filigrane           Security filigrane style (default: guilloche)
+    --no-anti-ai          Disable adversarial prompt injection (on by default)
 ```
+
+For the full list of 70+ flags, see [`CLI.md`](CLI.md).
 
 ## PDF options
 
@@ -182,30 +189,45 @@ re-runs.
 
 ## Configuration file
 
-Save options in a TOML file to avoid repeating flags:
+Save options in a TOML file to avoid repeating flags. See
+[`examples/config/firemark.toml`](examples/config/firemark.toml) for a full
+example with two presets: **ultra-secure** (dense tiling, full filigrane, QR
+traceability, metadata stripping) and **light** (simple diagonal text, no extras).
 
 ```toml
-# firemark.toml
+# Global defaults
 main_text = "CONFIDENTIAL"
-watermark_type = "stamp"
-color = "#CC0000"
-opacity = 0.4
+secondary_text = "{author} — {date}"
+watermark_type = "diagonal"
+color = "#1a3c6e"
+opacity = 0.45
+font_weight = "bold"
 filigrane = "guilloche"
 border = true
 
-[presets.rental]
-main_text = "Flat rental application only"
-watermark_type = "diagonal"
-color = "#336699"
-
-[presets.internal]
-main_text = "INTERNAL — DO NOT DISTRIBUTE"
+[preset.ultra-secure]
+main_text = "CONFIDENTIAL — {author}"
 watermark_type = "tile"
+color = "#CC0000"
+opacity = 0.6
+filigrane = "full"
+anti_ai = true
+qr_data = "firemark://{author}/{timestamp}/{uuid}"
+strip_metadata = true
+
+[preset.light]
+main_text = "COPY"
+watermark_type = "diagonal"
+color = "#555555"
+opacity = 0.3
+filigrane = "none"
+anti_ai = false
 ```
 
 ```bash
 firemark doc.pdf --config firemark.toml
-firemark doc.pdf --config firemark.toml --preset rental
+firemark doc.pdf --config firemark.toml --preset ultra-secure
+firemark doc.pdf --config firemark.toml --preset light
 firemark doc.pdf --save-preset mypreset    # save current flags
 firemark --list-presets                     # list available presets
 ```
@@ -217,8 +239,10 @@ firemark --list-presets                     # list available presets
 | PNG | yes | yes |
 | JPEG | yes | yes |
 | PDF | yes | yes |
+| WebP | yes | yes |
+| TIFF | yes | yes |
 
-Cross-format conversion is supported (e.g. `firemark photo.png -o out.pdf`).
+Cross-format conversion is supported (e.g. `firemark photo.webp -o out.pdf`).
 
 ## License
 

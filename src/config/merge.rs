@@ -94,6 +94,12 @@ fn merge_toml_globals(config: &mut WatermarkConfig, toml: &TomlConfig) -> Result
     if let Some(ref v) = toml.qr_data {
         config.qr_data = Some(v.clone());
     }
+    if let Some(v) = toml.qr_code_position {
+        config.qr_code_position = v;
+    }
+    if let Some(v) = toml.qr_code_size {
+        config.qr_code_size = Some(v);
+    }
     if let Some(ref v) = toml.template {
         config.template = Some(v.clone());
     }
@@ -257,6 +263,12 @@ fn merge_preset(config: &mut WatermarkConfig, preset: &PresetConfig) -> Result<(
     }
     if let Some(ref v) = preset.qr_data {
         config.qr_data = Some(v.clone());
+    }
+    if let Some(v) = preset.qr_code_position {
+        config.qr_code_position = v;
+    }
+    if let Some(v) = preset.qr_code_size {
+        config.qr_code_size = Some(v);
     }
     if let Some(ref v) = preset.template {
         config.template = Some(v.clone());
@@ -435,6 +447,12 @@ fn merge_cli_args(config: &mut WatermarkConfig, args: &CliArgs) -> Result<()> {
     }
     if let Some(ref v) = args.qr_data {
         config.qr_data = Some(v.clone());
+    }
+    if let Some(v) = args.qr_code_position {
+        config.qr_code_position = v;
+    }
+    if let Some(v) = args.qr_code_size {
+        config.qr_code_size = Some(v);
     }
     if let Some(ref v) = args.template {
         config.template = Some(v.clone());
@@ -617,6 +635,8 @@ fn preset_from_cli(args: &CliArgs) -> PresetConfig {
         secondary_text: args.secondary_text.clone(),
         image_path: args.image.clone(),
         qr_data: args.qr_data.clone(),
+        qr_code_position: args.qr_code_position,
+        qr_code_size: args.qr_code_size,
         template: args.template.clone(),
         font: args.font.clone(),
         font_size: args.font_size,

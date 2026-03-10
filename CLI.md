@@ -6,7 +6,7 @@
 firemark <input> [options]
 ```
 
-`<input>` can be a single file or a folder path. Supported input formats: `.jpg`/`.jpeg`, `.png`, `.pdf`.
+`<input>` can be a single file or a folder path. Supported input formats: `.jpg`/`.jpeg`, `.png`, `.pdf`, `.webp`, `.tif`/`.tiff`.
 
 ---
 
@@ -34,7 +34,7 @@ firemark <input> [options]
 | Flag | Description |
 |---|---|
 | `<input>` | Input file or folder *(required)* |
-| `-o, --output <path>` | Output file path. Supported extensions: `.jpg`, `.jpeg`, `.png`, `.pdf` |
+| `-o, --output <path>` | Output file path. Supported extensions: `.jpg`, `.jpeg`, `.png`, `.pdf`, `.webp`, `.tif`, `.tiff` |
 | `-S, --suffix <suffix>` | Append suffix to output filename: `{name}-{suffix}.ext`. Used when `-o` is omitted or with `-R` |
 | `-R, --recursive` | Process folders recursively |
 | `-j, --jobs <n>` | Number of parallel worker threads for batch processing (default: CPU count) |
@@ -98,6 +98,8 @@ Controls the **visual design style** of the watermark. Default: `diagonal`.
 | `-s, --secondary-text <text>` | Secondary text below or around the main text (default: `{timestamp}`) |
 | `-I, --image <path>` | Path to an image file to use as or combine with the watermark |
 | `--qr-data <string>` | Data to encode as a QR code watermark (URL, plain text, etc.) |
+| `--qr-code-position <pos>` | QR code placement: `center` \| `top-left` \| `top-right` \| `bottom-left` \| `bottom-right` (default: `center`) |
+| `--qr-code-size <px>` | QR code size in pixels (default: auto-scaled from image dimensions) |
 | `--template <string>` | Full text template using variables (see [Template Variables](#template-variables)) |
 
 ---
@@ -150,7 +152,7 @@ Controls the **visual design style** of the watermark. Default: `diagonal`.
 | `--shadow-opacity <0.0–1.0>` | Shadow opacity (default: `0.4`) |
 | `--invert` | Render the watermark in inverted color relative to the canvas underneath |
 | `--grayscale` | Force watermark to render in grayscale regardless of `--color` |
-| `--filigrane <style>` | Cryptographic security overlay: `full` \| `guilloche` \| `rosette` \| `crosshatch` \| `border` \| `lissajous` \| `moire` \| `spiral` \| `mesh` \| `none` (default: `guilloche`) |
+| `--filigrane <style>` | Cryptographic security overlay: `full` \| `guilloche` \| `rosette` \| `crosshatch` \| `border` \| `lissajous` \| `moire` \| `spiral` \| `mesh` \| `plume` \| `constellation` \| `ripple` \| `none` (default: `guilloche`) |
 
 ---
 
